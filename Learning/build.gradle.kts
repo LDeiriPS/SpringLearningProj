@@ -20,6 +20,7 @@ dependencies {
     implementation("org.jetbrains:annotations:23.0.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.kafka:spring-kafka-test")
+	implementation("com.google.protobuf:protobuf-gradle-plugin:0.9.2")
 }
 
 tasks.withType<Test> {
