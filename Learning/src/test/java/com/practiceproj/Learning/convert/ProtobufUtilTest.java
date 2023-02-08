@@ -1,15 +1,14 @@
-package.practiceproj.Learning.convert;
-
-
+package com.practiceproj.Learning.convert;
 
 import java.io.IOException;
 
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 import com.google.protobuf.Message;
 
-public class ProtobufUtilUnitTest {
+public class ProtobufUtilTest {
 
     public static String jsonStr = "{\r\n"
             + "  \"boolean\": true,\r\n"
@@ -24,16 +23,16 @@ public class ProtobufUtilUnitTest {
     @Test
     public void givenJson_convertToProtobuf() throws IOException {
         Message protobuf = ProtobufUtil.fromJson(jsonStr);
-        Assert.assertTrue(protobuf.toString().contains("key: \"boolean\""));
-        Assert.assertTrue(protobuf.toString().contains("string_value: \"Hello World\""));
+        assertTrue(protobuf.toString().contains("key: \"boolean\""));
+        assertTrue(protobuf.toString().contains("string_value: \"Hello World\""));
     }
 
     @Test
     public void givenProtobuf_convertToJson() throws IOException {
         Message protobuf = ProtobufUtil.fromJson(jsonStr);
         String json = ProtobufUtil.toJson(protobuf);
-        Assert.assertTrue(json.contains("\"boolean\": true"));
-        Assert.assertTrue(json.contains("\"string\": \"Hello World\""));
-        Assert.assertTrue(json.contains("\"color\": \"gold\""));
+        assertTrue(json.contains("\"boolean\": true"));
+        assertTrue(json.contains("\"string\": \"Hello World\""));
+        assertTrue(json.contains("\"color\": \"gold\""));
     }
 }

@@ -1,6 +1,5 @@
-
-
 package com.practiceproj.Learning.convert;
+
 
 import java.io.IOException;
 
@@ -16,9 +15,8 @@ public class ProtobufUtil {
         return JsonFormat.printer().print(messageOrBuilder);
     }
 
-    @SuppressWarnings("unchecked")
     public static Message fromJson(String json) throws IOException {
-        Builder structBuilder = Struct.newBuilder();
+        Builder<Struct.Builder> structBuilder = Struct.newBuilder();
         JsonFormat.parser().ignoringUnknownFields().merge(json, structBuilder);
         return structBuilder.build();
     }

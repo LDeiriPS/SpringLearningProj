@@ -1,0 +1,52 @@
+plugins {
+	id 'java'
+	id "com.google.protobuf" version "0.9.1"
+	id "io.spring.dependency-management" version "1.1.0"
+	id "org.springframework.boot" version "3.0.2"
+	id 'maven-publish'
+
+	id 'groovy'
+	id 'jacoco'
+	//id "org.openapi.generator" version "6.2.1"
+}
+
+group = 'com.practiceproj'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	jcenter()
+	mavenCentral()
+	maven{
+		url 'https://packages.confluent.io/maven'
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'org.apache.kafka:kafka-clients'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka-streams'
+	implementation 'org.projectlombok:lombok:1.18.22'
+	implementation 'org.projectlombok:lombok:1.18.22'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	implementation "com.google.protobuf:protobuf-java:3.21.12"
+	implementation 'com.google.protobuf:protobuf-java-util:3.21.12'
+
+}
+
+protobuf {
+	// Configure the protoc executable
+	protoc {
+		// Download from repositories
+		artifact = 'com.google.protobuf:protoc:3.0.0'
+	}
+	generatedFilesBaseDir = "$buildDir/api/src/"
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
